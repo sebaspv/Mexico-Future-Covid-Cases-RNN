@@ -88,5 +88,6 @@ true_predictions = scaler.inverse_transform(test_predictions)
 preds = pd.DataFrame(test)
 preds.columns = ['True Predictions']
 preds['Model Predictions'] = true_predictions
+train.plot()
 preds.plot()
 plt.show()

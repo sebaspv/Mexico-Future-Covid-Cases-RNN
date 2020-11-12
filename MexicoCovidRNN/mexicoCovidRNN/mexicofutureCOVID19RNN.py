@@ -68,8 +68,8 @@ model.add(LSTM(60,return_sequences=True))
 model.add(LSTM(30))
 model.add(Dense(1))
 model.compile(optimizer='adam',loss='mse')
-#Declare an early stop
-early_stop = EarlyStopping(monitor='val_loss',patience=2)
+#Declare an early stop call
+early_stop = EarlyStopping(monitor='val_loss',patience=1)
 #Fit the training data into the model
 model.fit(generator,epochs = 10,validation_data=val_generator,callbacks=[early_stop])
 test_predictions = []
@@ -84,8 +84,7 @@ for i in range(len(test)):
 #Create predictions 25 steps into the future
 
 true_predictions = scaler.inverse_transform(test_predictions)
-#Transform the scaled data back to the original values, since the predictions
-#are scaled.
+#Transform the scaled data back to the original values, since the predictions are scaled.
 preds = pd.DataFrame(test)
 preds.columns = ['True Predictions']
 preds['Model Predictions'] = true_predictions

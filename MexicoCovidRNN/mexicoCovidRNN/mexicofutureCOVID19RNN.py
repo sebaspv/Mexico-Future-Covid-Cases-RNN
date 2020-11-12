@@ -62,7 +62,9 @@ n_features = 1
 #Create the LSTM Model
 
 model = Sequential()
-model.add(LSTM(60,input_shape=(pred_len,n_features)))
+model.add(LSTM(60,input_shape=(pred_len,n_features),return_sequences=True))
+model.add(LSTM(60,return_sequences=True))
+model.add(LSTM(30))
 model.add(Dense(1))
 model.compile(optimizer='adam',loss='mse')
 #Declare an early stop
